@@ -86,3 +86,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     };
 });
+{
+  "name": "adventure-academy",
+  "version": "1.0.0",
+  "description": "An interactive learning platform for kids.",
+  "main": "index.html",
+  "scripts": {
+    "start": "serve"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "license": "MIT"
+}
