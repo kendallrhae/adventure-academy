@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adventure Academy</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <h1>Welcome to Adventure Academy</h1>
+    <p>Enter your name and grade to begin:</p>
+    
+    <input type="text" id="username" placeholder="Enter your name">
+    <select id="grade">
+        <option value="">Select Grade</option>
+        <option value="K">Kindergarten</option>
+        <option value="1">Grade 1</option>
+        <option value="2">Grade 2</option>
+        <option value="3">Grade 3</option>
+    </select>
+    
+    <button onclick="startAdventure()">Start</button>
+
+    <div id="map-container" style="display: none;">
+        <h2>Adventure Academy Map</h2>
+        <img src="assets/map.png" alt="Interactive Map">
+        <p>Click a section to teleport!</p>
+    </div>
+</body>
+</html>
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+h1 {
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Adventure Academy is ready!');
+
+    let studentData = {
+        name: '',
+        grade: '',
+        interests: [],
+        completedLessons: 0
+    };
+
+    window.startAdventure = function() {
+        const username = document.getElementById('username').value;
+        const grade = document.getElementById('grade').value;
+
+        if (username && grade) {
+            studentData.name = username;
+            studentData.grade = grade;
+            console.log(`Welcome, ${username} (Grade ${grade})!`);
+            
+            document.getElementById('map-container').style.display = 'block';
+        } else {
+            alert('Please enter your name and grade.');
+        }
+    };
+
+    window.selectInterest = function(interest) {
+        if (!studentData.interests.includes(interest)) {
+            studentData.interests.push(interest);
+        }
+        console.log(`Interest added: ${interest}`);
+    };
+
+    window.completeLesson = function() {
+        studentData.completedLessons++;
+        console.log(`Lesson completed! Total: ${studentData.completedLessons}`);
+
+        if (studentData.completedLessons % 2 === 0) {
+            console.log('Keyboarding lesson required!');
+        }
+    };
+});
